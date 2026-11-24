@@ -170,9 +170,6 @@ bool szabalyose(Lepes lepes, Tabla tabla)
     else if ((lepes.HONNAN.BABU>V_KIRALY && lepes.HONNAN.BABU<=S_KIRALY) && (lepes.HOVA.BABU>V_KIRALY && lepes.HOVA.BABU<=S_KIRALY)){
         return false;
     }
-    else if (lepes.HOVA.BABU == V_KIRALY || lepes.HOVA.BABU == S_KIRALY){
-        return false;
-    }
 
     switch(lepes.HONNAN.BABU){
         case(V_BASTYA):
@@ -202,4 +199,32 @@ bool szabalyose(Lepes lepes, Tabla tabla)
         case(URES):
             return false;
     }
+}
+
+bool sakke(Tabla tabla, Babu kiraly)
+{
+    Lepes ellenorzo = {0};
+
+    for (int i = 0; i < 8; i++){
+        for (int j = 0; j < 8; j++){
+            if (tabla.mezok[i][j] == kiraly){
+                ellenorzo.HOVA.SOR = i;
+                ellenorzo.HOVA.OSZLOP = j;
+                ellenorzo.HOVA.BABU = kiraly;
+            }
+        }
+    }
+
+    for (int i = 0; i < 8; i++){
+        for (int j = 0; j < 8; j++){
+            ellenorzo.HONNAN.SOR = i;
+            ellenorzo.HONNAN.OSZLOP = j;
+            ellenorzo.HONNAN.BABU = tabla.mezok[i][j];
+            if(szabalyose(ellenorzo, tabla)){
+                return true;
+            }
+        }
+    }
+
+    return false;
 }

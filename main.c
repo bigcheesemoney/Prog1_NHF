@@ -37,44 +37,40 @@ int main(int argc, char *argv[]){
     printf("%d %d %d", mezo.SOR, mezo.OSZLOP, mezo.BABU);
 
     /*Game loop*/
-    bool white_clicked = false;
-    bool black_clicked = false;
     int turn = 1;
+    bool clicked = false;
     Lepes lepes;
     SDL_Event event;
     while (SDL_WaitEvent(&event) && event.type != SDL_QUIT){
             switch (event.type){
                 case SDL_MOUSEBUTTONDOWN:
-                    if (white_clicked && !black_clicked){
+                    if (clicked && turn % 2 == 0 && lepes.HONNAN.BABU > V_KIRALY){
                         lepes.HOVA = melyik_mezo(event.button.x, event.button.y, tabla);
-                        if (szabalyose(lepes, tabla) && lepes.HONNAN.BABU < 7){
+                        if (szabalyose(lepes, tabla)){
                             lepes_kezel(&tabla, lepes);
                             turn++;
-                            white_clicked = false;
+                            clicked = false;
                         }
                         else{
-                            white_clicked = false;
+                            clicked = false;
                         }
                     }
-                    else if (turn % 2 != 0){
-                        lepes.HONNAN = melyik_mezo(event.button.x, event.button.y, tabla);
-                        white_clicked = true;
-                    }
-                    if (black_clicked && !white_clicked){
+                    else if (clicked &&turn % 2 != 0 && lepes.HONNAN.BABU < S_GYALOG && lepes.HONNAN.BABU != URES){
                         lepes.HOVA = melyik_mezo(event.button.x, event.button.y, tabla);
-                        if (szabalyose(lepes, tabla) && lepes.HONNAN.BABU > 7){
+                        if (szabalyose(lepes, tabla)){
                             lepes_kezel(&tabla, lepes);
                             turn++;
-                            black_clicked = false;
+                            clicked = false;
                         }
                         else{
-                            black_clicked = false;
+                            clicked = false;
                         }
                     }
-                    else if (turn % 2 == 0){
+                    else{
                         lepes.HONNAN = melyik_mezo(event.button.x, event.button.y, tabla);
-                        black_clicked = true;
+                        clicked = true;
                     }
+                    break;
             }
             pozicio_frissit(tabla, renderer, font);
             SDL_RenderPresent(renderer);
