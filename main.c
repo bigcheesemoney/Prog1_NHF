@@ -42,11 +42,17 @@ int main(int argc, char *argv[]){
     Lepes lepes;
     SDL_Event event;
     while (SDL_WaitEvent(&event) && event.type != SDL_QUIT){
+        if (matte(tabla, V_KIRALY) || matte(tabla, S_KIRALY)){
+            SDL_Quit();
+            printf("\n Matt! A jateknak vege");
+        }
             switch (event.type){
                 case SDL_MOUSEBUTTONDOWN:
                     if (clicked && turn % 2 == 0 && lepes.HONNAN.BABU > V_KIRALY){
                         lepes.HOVA = melyik_mezo(event.button.x, event.button.y, tabla);
-                        if (szabalyose(lepes, tabla)){
+                        Tabla masolat = tabla;
+                        lepes_kezel(&masolat, lepes);
+                        if (!sakke(masolat, S_KIRALY) && szabalyose(lepes, tabla)){
                             lepes_kezel(&tabla, lepes);
                             turn++;
                             clicked = false;
@@ -57,7 +63,9 @@ int main(int argc, char *argv[]){
                     }
                     else if (clicked &&turn % 2 != 0 && lepes.HONNAN.BABU < S_GYALOG && lepes.HONNAN.BABU != URES){
                         lepes.HOVA = melyik_mezo(event.button.x, event.button.y, tabla);
-                        if (szabalyose(lepes, tabla)){
+                        Tabla masolat = tabla;
+                        lepes_kezel(&masolat, lepes);
+                        if (!sakke(masolat, V_KIRALY) && szabalyose(lepes, tabla)){
                             lepes_kezel(&tabla, lepes);
                             turn++;
                             clicked = false;

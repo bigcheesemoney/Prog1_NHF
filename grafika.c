@@ -140,8 +140,3 @@ void pozicio_frissit(Tabla tabla, SDL_Renderer *renderer, TTF_Font *font){
         }
     }
 }
-
-void lepes_kezel(Tabla *tabla, Lepes lepes){
-    tabla->mezok[lepes.HOVA.SOR][lepes.HOVA.OSZLOP] = tabla->mezok[lepes.HONNAN.SOR][lepes.HONNAN.OSZLOP];
-    tabla->mezok[lepes.HONNAN.SOR][lepes.HONNAN.OSZLOP] = 0;
-}

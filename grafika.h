@@ -13,6 +13,4 @@ void draw_board(SDL_Renderer *renderer);
 Mezo melyik_mezo(int x, int y, Tabla tabla);
 
 void pozicio_frissit(Tabla tabla, SDL_Renderer *renderer, TTF_Font *font);
-
-void lepes_kezel(Tabla *tabla, Lepes lepes);
 #endif

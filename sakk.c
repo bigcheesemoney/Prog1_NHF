@@ -228,3 +228,59 @@ bool sakke(Tabla tabla, Babu kiraly)
 
     return false;
 }
+
+bool matte(Tabla tabla, Babu kiraly)
+{
+    Lepes ellenorzo = {0};
+
+    if (!sakke(tabla, kiraly)){
+        return false;
+    }
+
+    for (int i = 0; i < 8; i++){
+        for (int j = 0; j < 8; j++){
+            if (kiraly == V_KIRALY && tabla.mezok[i][j] < S_KIRALY && tabla.mezok[i][j] != URES){
+                ellenorzo.HONNAN.SOR = i;
+                ellenorzo.HONNAN.OSZLOP = j;
+                ellenorzo.HONNAN.BABU = tabla.mezok[i][j];
+
+                for (int k = 0; k < 8; k++){
+                    for (int l = 0; l < 8; l++){
+                        ellenorzo.HOVA.SOR = k;
+                        ellenorzo.HOVA.OSZLOP = l;
+                        ellenorzo.HOVA.BABU = tabla.mezok[k][l];
+                        Tabla kov_allapot = tabla;
+                        lepes_kezel(&kov_allapot, ellenorzo);
+                        if (szabalyose(ellenorzo, tabla) && !sakke(kov_allapot, kiraly)){
+                            return false;
+                        }
+                    }
+                }
+            }
+            else if (kiraly == S_KIRALY && tabla.mezok[i][j] > V_KIRALY){
+                ellenorzo.HONNAN.SOR = i;
+                ellenorzo.HONNAN.OSZLOP = j;
+                ellenorzo.HONNAN.BABU = tabla.mezok[i][j];
+
+                for (int k = 0; k < 8; k++){
+                    for (int l = 0; l < 8; l++){
+                        ellenorzo.HOVA.SOR = k;
+                        ellenorzo.HOVA.OSZLOP = l;
+                        ellenorzo.HOVA.BABU = tabla.mezok[k][l];
+                        Tabla kov_allapot = tabla;
+                        lepes_kezel(&kov_allapot, ellenorzo);
+                        if (szabalyose(ellenorzo, tabla) && !sakke(kov_allapot, kiraly)){
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
+
+void lepes_kezel(Tabla *tabla, Lepes lepes){
+    tabla->mezok[lepes.HOVA.SOR][lepes.HOVA.OSZLOP] = tabla->mezok[lepes.HONNAN.SOR][lepes.HONNAN.OSZLOP];
+    tabla->mezok[lepes.HONNAN.SOR][lepes.HONNAN.OSZLOP] = 0;
+}

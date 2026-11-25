@@ -36,5 +36,7 @@ bool szabalyose(Lepes lepes, Tabla tabla);
 
 bool sakke(Tabla tabla, Babu kiraly);
 
+bool matte(Tabla tabla, Babu kiraly);
 
+void lepes_kezel(Tabla *tabla, Lepes lepes);
 #endif
