@@ -34,5 +34,7 @@ bool huszar_lepes(Lepes lepes);
 
 bool szabalyose(Lepes lepes, Tabla tabla);
 
+bool sakke(Tabla tabla, Babu kiraly);
+
 
 #endif
