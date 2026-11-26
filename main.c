@@ -44,7 +44,11 @@ int main(int argc, char *argv[]){
     while (SDL_WaitEvent(&event) && event.type != SDL_QUIT){
         if (matte(tabla, V_KIRALY) || matte(tabla, S_KIRALY)){
             SDL_Quit();
-            printf("\n Matt! A jateknak vege");
+            printf("\nMatt! A jateknak vege.");
+        }
+        else if(patte(tabla, V_KIRALY) || patte(tabla, S_KIRALY)){
+            SDL_Quit();
+            printf("\nPatt! A jateknak vege.");
         }
             switch (event.type){
                 case SDL_MOUSEBUTTONDOWN:
@@ -53,6 +57,7 @@ int main(int argc, char *argv[]){
                         Tabla masolat = tabla;
                         lepes_kezel(&masolat, lepes);
                         if (!sakke(masolat, S_KIRALY) && szabalyose(lepes, tabla)){
+                            promocio(&tabla, lepes);
                             lepes_kezel(&tabla, lepes);
                             turn++;
                             clicked = false;
@@ -67,6 +72,7 @@ int main(int argc, char *argv[]){
                         lepes_kezel(&masolat, lepes);
                         if (!sakke(masolat, V_KIRALY) && szabalyose(lepes, tabla)){
                             lepes_kezel(&tabla, lepes);
+                            promocio(&tabla, lepes);
                             turn++;
                             clicked = false;
                         }

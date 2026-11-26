@@ -423,7 +423,7 @@
 	"sakk.h"
 	"debugmalloc.h"
 
-1795643228 c:\users\domok\desktop\codeblocks projects\prog1_nhf\sakk.h
+1795697237 c:\users\domok\desktop\codeblocks projects\prog1_nhf\sakk.h
 	<stdbool.h>
 
 1794658941 c:\users\domok\desktop\codeblocks projects\prog1_nhf\debugmalloc.h
@@ -437,13 +437,13 @@
 	<process.h>
 	<unistd.h>
 
-1795643716 source:c:\users\domok\desktop\codeblocks projects\prog1_nhf\sakk.c
+1795699570 source:c:\users\domok\desktop\codeblocks projects\prog1_nhf\sakk.c
 	"debugmalloc.h"
 	"sakk.h"
 	<stdbool.h>
 	<stdlib.h>
 
-1795643334 source:c:\users\domok\desktop\codeblocks projects\prog1_nhf\main.c
+1795698815 source:c:\users\domok\desktop\codeblocks projects\prog1_nhf\main.c
 	<SDL2_gfxPrimitives.h>
 	<SDL_ttf.h>
 	<stdlib.h>

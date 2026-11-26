@@ -38,5 +38,9 @@ bool sakke(Tabla tabla, Babu kiraly);
 
 bool matte(Tabla tabla, Babu kiraly);
 
+bool patte(Tabla tabla, Babu kiraly);
+
+void promocio(Tabla *tabla, Lepes lepes);
+
 void lepes_kezel(Tabla *tabla, Lepes lepes);
 #endif
