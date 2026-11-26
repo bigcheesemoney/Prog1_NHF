@@ -57,8 +57,8 @@ int main(int argc, char *argv[]){
                         Tabla masolat = tabla;
                         lepes_kezel(&masolat, lepes);
                         if (!sakke(masolat, S_KIRALY) && szabalyose(lepes, tabla)){
-                            promocio(&tabla, lepes);
                             lepes_kezel(&tabla, lepes);
+                            promocio(&tabla, lepes);
                             turn++;
                             clicked = false;
                         }
